@@ -150,12 +150,12 @@
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  background: #239ab9;
+  background: var(--accent);
   color: #fff;
 }
 
 .site-action-button:hover {
-  background: #197f9b;
+  background: var(--accent-dark);
 }
 
 .site-status-badge {
@@ -221,7 +221,7 @@
 
 .pagination-controls button:hover:not(:disabled),
 .pagination-controls button.active {
-  background: #209ac5;
+  background: var(--accent);
   color: #fff;
 }
 

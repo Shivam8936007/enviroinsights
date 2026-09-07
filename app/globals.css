@@ -3,6 +3,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --accent: #209cc0;
+  --accent-rgb: 32, 156, 192;
+  --accent-dark: #1a7d9a;
+  --accent-light: #e5f3f7;
+  --accent-soft: #f2fafc;
+  --accent-text: #176f89;
 }
 
 @theme inline {

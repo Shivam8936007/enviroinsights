@@ -64,6 +64,10 @@ export default function UtilityTabs() {
 
   const pathname = usePathname();
 
+  if (pathname === "/") {
+    return null;
+  }
+
   return (
     <nav className="utility-container">
 

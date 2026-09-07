@@ -8,7 +8,7 @@
       135deg,
       #eef8fc 0%,
       #f6fbff 50%,
-      #edf8fc 100%
+      var(--accent-soft) 100%
     );
 }
 
@@ -147,8 +147,8 @@
   background:
     linear-gradient(
       135deg,
-      #f5fbff,
-      #eef8fc
+      var(--accent-soft),
+      var(--accent-light)
     );
 }
 
@@ -160,7 +160,7 @@
 
   border: 3px solid #d8ebf5;
 
-  border-top-color: #279bc2;
+  border-top-color: var(--accent);
 
   animation:
     spinner 0.8s linear infinite;
@@ -547,7 +547,7 @@
 
   background: #e7f6fc;
 
-  color: #2398c0;
+  color: var(--accent);
 
   font-size: 18px;
 }

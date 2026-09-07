@@ -1,9 +1,17 @@
 "use client";
 
 import { HelpCircle } from "lucide-react";
+import { usePathname } from "next/navigation";
 import "../app/navbar.css";
+import ThemeControls from "./ThemeControls";
 
 export default function Navbar() {
+  const pathname = usePathname();
+
+  if (pathname === "/") {
+    return null;
+  }
+
   return (
     <header className="navbar">
 
@@ -26,6 +34,8 @@ export default function Navbar() {
           <HelpCircle size={22} />
           <span>Help Center</span>
         </div>
+
+        <ThemeControls />
 
         <div className="navbar-divider" />
 

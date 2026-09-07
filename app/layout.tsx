@@ -1,5 +1,7 @@
 import Navbar from "@/components/Navbar";
+import ThemeProvider from "@/components/ThemeProvider";
 import UtilityTabs from "@/components/UtilityTabs";
+import "./globals.css";
 import "./dashboard.css";
 
 export default function DashboardLayout({
@@ -10,14 +12,16 @@ export default function DashboardLayout({
   return (
     <html lang="en">
       <body>
-        <div className="dashboard-layout">
-          <Navbar />
-          <UtilityTabs />
+        <ThemeProvider>
+          <div className="dashboard-layout">
+            <Navbar />
+            <UtilityTabs />
 
-          <main className="dashboard-content">
-            {children}
-          </main>
-        </div>
+            <main className="dashboard-content">
+              {children}
+            </main>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

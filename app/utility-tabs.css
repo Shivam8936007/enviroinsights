@@ -1,7 +1,7 @@
 .utility-container {
   padding: 18px 3.5% 10px;
 
-  background: #eef7fc;
+  background: var(--accent-soft);
 }
 
 .utility-tabs {
@@ -50,20 +50,20 @@
 }
 
 .utility-tab:hover {
-  background: #edf7fc;
+  background: var(--accent-light);
 
-  color: #188eb9;
+  color: var(--accent-text);
 }
 
 .utility-tab.active {
   color: white;
 
-  background: #2799bd;
+  background: var(--accent);
 
   box-shadow:
-    0 4px 10px rgba(39, 153, 189, 0.18);
+    0 4px 10px rgba(var(--accent-rgb), 0.18);
 }
 
 .utility-tab.active:hover {
-  background: #218eaf;
+  background: var(--accent-dark);
 }
