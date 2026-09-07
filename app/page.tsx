@@ -1,5 +1,5 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import "./login.css";
 
@@ -7,17 +7,19 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [environment, setEnvironment] = useState("");
 
-  const handleSubmit = (e:any) => {
-    e.preventDefault();
+  const router = useRouter();
 
-    console.log({
-      email: e.target.email.value,
-      password: e.target.password.value,
-      environment,
-    });
+ const handleSubmit = (e: any) => {
+  e.preventDefault();
 
-    // Add your login API here
-  };
+  console.log({
+    email: e.target.email.value,
+    password: e.target.password.value,
+    environment,
+  });
+
+  router.push("/map");
+};
 
   return (
     <main className="login-page">
