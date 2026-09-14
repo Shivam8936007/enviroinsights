@@ -132,7 +132,7 @@ export default function IndustryReportFilters() {
   const [startDate, setStartDate] = useState("2026-09-14T00:00");
   const [endDate, setEndDate] = useState("2026-09-14T05:00");
   const [showSummary, setShowSummary] = useState(true);
-  const [generated, setGenerated] = useState(true); // Generated report view active
+  const [generated, setGenerated] = useState(false); // Report view hidden until Generate Report clicked
   const [viewMode, setViewMode] = useState<"table" | "chart">("table");
   const [sortAsc, setSortAsc] = useState<boolean>(true);
   const [openField, setOpenField] = useState<string | null>(null);
