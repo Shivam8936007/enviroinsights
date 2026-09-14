@@ -96,7 +96,7 @@ export default function UtilityTabs() {
                   <ChevronDown size={16} />
                 </Link>
 
-                {(dropdownOpen || active) && (
+                {/* {(dropdownOpen || active) && (
                   <div className="utility-tab-dropdown-menu">
                     <Link
                       href="/custom-report"
@@ -106,7 +106,7 @@ export default function UtilityTabs() {
                       Uploader Report
                     </Link>
                   </div>
-                )}
+                )} */}
               </div>
             );
           }
