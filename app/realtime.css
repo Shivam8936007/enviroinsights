@@ -511,5 +511,49 @@
 
   .detail-controls {
     flex-wrap: wrap;
+    width: 100%;
   }
 }
+
+@media (max-width: 600px) {
+  .realtime-container {
+    padding: 10px 12px 20px;
+  }
+
+  .parameters-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .parameter-card-rt {
+    padding: 16px;
+  }
+
+  .param-value {
+    font-size: 28px;
+  }
+
+  .toggle-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .toggle-item-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  .detail-heading {
+    font-size: 17px;
+  }
+
+  .detail-card {
+    padding: 16px 12px;
+  }
+
+  .graph-container {
+    height: 300px;
+  }
+}
+

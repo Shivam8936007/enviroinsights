@@ -203,3 +203,36 @@
   margin-top: 10px;
   padding-right: 14px;
 }
+
+/* ==========================================
+   MOBILE RESPONSIVE MEDIA QUERIES
+   ========================================== */
+
+@media (max-width: 600px) {
+  .data-availability-container {
+    padding: 10px 12px 20px;
+  }
+
+  .data-availability-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-accordion-header {
+    padding: 12px 14px;
+  }
+
+  .site-accordion-content {
+    padding: 0 10px 12px 12px;
+    overflow-x: auto;
+  }
+
+  .site-name-text {
+    font-size: 12px;
+  }
+
+  .site-avail-score {
+    font-size: 13px;
+  }
+}
+

@@ -235,3 +235,38 @@
   transform: scale(1.05);
   background: #2dd4bf;
 }
+
+/* ==========================================
+   MOBILE RESPONSIVE MEDIA QUERIES
+   ========================================== */
+
+@media (max-width: 600px) {
+  .custom-report-container {
+    padding: 10px 12px 20px;
+  }
+
+  .custom-report-filter-card {
+    padding: 16px 12px;
+  }
+
+  .cr-filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cr-actions-row {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .fetch-report-btn,
+  .download-excel-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .uploader-table td:first-child {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+}
+

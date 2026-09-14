@@ -224,3 +224,67 @@
   color: #263d52;
   font: inherit;
 }
+
+/* ==========================================
+   MOBILE RESPONSIVE MEDIA QUERIES
+   ========================================== */
+
+@media (max-width: 768px) {
+  .navbar {
+    height: 60px;
+    padding: 0 14px;
+  }
+
+  .logo-symbol {
+    width: 34px;
+    height: 40px;
+    font-size: 22px;
+  }
+
+  .logo-text span:first-child,
+  .logo-text span:last-child {
+    font-size: 15px;
+  }
+
+  .navbar-right {
+    gap: 12px;
+  }
+
+  .company-name,
+  .navbar-divider {
+    display: none;
+  }
+
+  .help-center span {
+    display: none;
+  }
+
+  .help-center {
+    font-size: 15px;
+  }
+
+  .user-avatar {
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 10px;
+  }
+
+  .logo-text {
+    display: none;
+  }
+
+  .theme-toggle span {
+    display: none;
+  }
+
+  .theme-panel {
+    right: -10px;
+    width: 220px;
+  }
+}

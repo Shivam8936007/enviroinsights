@@ -102,3 +102,42 @@
   background: var(--accent-light);
   color: var(--accent);
 }
+
+/* ==========================================
+   MOBILE RESPONSIVE MEDIA QUERIES
+   ========================================== */
+
+@media (max-width: 768px) {
+  .utility-container {
+    padding: 10px 12px 6px;
+  }
+
+  .utility-tabs {
+    height: 48px;
+    padding: 4px 6px;
+    gap: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .utility-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .utility-tab {
+    height: 38px;
+    padding: 0 10px;
+    font-size: 13px;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .utility-container {
+    padding: 8px 8px 4px;
+  }
+
+  .utility-tab span {
+    white-space: nowrap;
+  }
+}
