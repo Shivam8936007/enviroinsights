@@ -279,3 +279,135 @@
     display: none;
   }
 }
+
+/* ==========================================
+   EXPORT BUTTONS & REPORT OUTPUT STYLES
+   ========================================== */
+
+.report-actions-row {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.export-button {
+  height: 34px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #d3d3d3;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.export-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: #f8fcfd;
+}
+
+/* Report View Tabs */
+.report-view-tabs {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.report-tab-btn {
+  padding: 10px 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.15s ease;
+}
+
+.report-tab-btn:hover {
+  color: #111827;
+}
+
+.report-tab-btn.active {
+  color: var(--accent);
+}
+
+.report-tab-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+}
+
+/* Report Table Output */
+.report-output-container {
+  margin-top: 16px;
+}
+
+.report-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+}
+
+.report-table th {
+  background: #f8fafc;
+  color: #374151;
+  font-weight: 700;
+  text-align: left;
+  padding: 12px 18px;
+  border-bottom: 2px solid #e5e7eb;
+  cursor: pointer;
+  user-select: none;
+}
+
+.report-table th:hover {
+  background: #f1f5f9;
+}
+
+.th-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.report-table td {
+  padding: 12px 18px;
+  color: #1f2937;
+  border-bottom: 1px solid #f1f5f9;
+  white-space: nowrap;
+}
+
+.report-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.report-chart-container {
+  width: 100%;
+  height: 380px;
+  padding-top: 16px;
+}

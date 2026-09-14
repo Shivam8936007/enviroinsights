@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -61,8 +62,8 @@ const tabs = [
 ];
 
 export default function UtilityTabs() {
-
   const pathname = usePathname();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   if (pathname === "/") {
     return null;
@@ -70,38 +71,58 @@ export default function UtilityTabs() {
 
   return (
     <nav className="utility-container">
-
       <div className="utility-tabs">
-
         {tabs.map((tab) => {
-
           const Icon = tab.icon;
 
           const active =
-            pathname === tab.path ||
-            pathname.startsWith(`${tab.path}/`);
+            pathname === tab.path || pathname.startsWith(`${tab.path}/`);
+
+          if (tab.name === "Custom Report") {
+            return (
+              <div
+                key={tab.path}
+                className="utility-tab-dropdown-wrap"
+                onMouseEnter={() => setDropdownOpen(true)}
+                onMouseLeave={() => setDropdownOpen(false)}
+              >
+                <Link
+                  href={tab.path}
+                  className={`utility-tab ${active ? "active" : ""}`}
+                  onClick={() => setDropdownOpen((prev) => !prev)}
+                >
+                  <Icon size={18} strokeWidth={2.5} />
+                  <span>{tab.name}</span>
+                  <ChevronDown size={16} />
+                </Link>
+
+                {(dropdownOpen || active) && (
+                  <div className="utility-tab-dropdown-menu">
+                    <Link
+                      href="/custom-report"
+                      className="utility-tab-dropdown-item"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      Uploader Report
+                    </Link>
+                  </div>
+                )}
+              </div>
+            );
+          }
 
           return (
             <Link
               key={tab.path}
               href={tab.path}
-              className={`utility-tab ${
-                active ? "active" : ""
-              }`}
+              className={`utility-tab ${active ? "active" : ""}`}
             >
               <Icon size={18} strokeWidth={2.5} />
-
               <span>{tab.name}</span>
-
-              {tab.name === "Custom Report" && (
-                <ChevronDown size={16} />
-              )}
             </Link>
           );
         })}
-
       </div>
-
     </nav>
   );
 }

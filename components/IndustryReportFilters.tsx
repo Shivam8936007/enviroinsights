@@ -1,12 +1,26 @@
 "use client";
 
+import { useState } from "react";
 import {
   BarChart3,
   CalendarDays,
   Check,
   ChevronDown,
+  FileText,
+  FileSpreadsheet,
+  ChevronsUpDown,
+  Table as TableIcon,
+  LineChart as LineChartIcon,
 } from "lucide-react";
-import { useState } from "react";
+import {
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+} from "recharts";
 
 import "../app/industry-reports.css";
 
@@ -32,6 +46,25 @@ const parameterOptions = [
   "Boiler Stack - SO2 (mg/Nm3)",
 ];
 const intervalOptions = ["1 Hour", "15 Minutes", "30 Minutes", "1 Day", "1 Week"];
+
+interface ReportRow {
+  id: string;
+  date: string;
+  value: number;
+}
+
+const REPORT_DATASET: ReportRow[] = [
+  { id: "1", date: "14-09-2026 00:00", value: 10 },
+  { id: "2", date: "14-09-2026 01:00", value: 10 },
+  { id: "3", date: "14-09-2026 02:00", value: 9.697 },
+  { id: "4", date: "14-09-2026 03:00", value: 1.618 },
+  { id: "5", date: "14-09-2026 04:00", value: 10 },
+  { id: "6", date: "14-09-2026 05:00", value: 10 },
+  { id: "7", date: "14-09-2026 06:00", value: 10 },
+  { id: "8", date: "14-09-2026 07:00", value: 10 },
+  { id: "9", date: "14-09-2026 08:00", value: 5.205 },
+  { id: "10", date: "14-09-2026 09:00", value: 0.718 },
+];
 
 interface SelectFieldProps {
   label: string;
@@ -96,10 +129,12 @@ export default function IndustryReportFilters() {
   const [monitoringType, setMonitoringType] = useState(monitoringOptions[0]);
   const [parameter, setParameter] = useState(parameterOptions[0]);
   const [interval, setInterval] = useState(intervalOptions[0]);
-  const [startDate, setStartDate] = useState("2026-09-07T00:00");
-  const [endDate, setEndDate] = useState("2026-09-07T16:00");
+  const [startDate, setStartDate] = useState("2026-09-14T00:00");
+  const [endDate, setEndDate] = useState("2026-09-14T05:00");
   const [showSummary, setShowSummary] = useState(true);
-  const [generated, setGenerated] = useState(false);
+  const [generated, setGenerated] = useState(true); // Generated report view active
+  const [viewMode, setViewMode] = useState<"table" | "chart">("table");
+  const [sortAsc, setSortAsc] = useState<boolean>(true);
   const [openField, setOpenField] = useState<string | null>(null);
 
   const toggleField = (field: string) => {
@@ -109,6 +144,30 @@ export default function IndustryReportFilters() {
   const selectValue = (setter: (value: string) => void, value: string) => {
     setter(value);
     setOpenField(null);
+  };
+
+  const sortedData = [...REPORT_DATASET].sort((a, b) => {
+    if (sortAsc) return a.date.localeCompare(b.date);
+    return b.date.localeCompare(a.date);
+  });
+
+  const handleExport = (format: "pdf" | "csv" | "excel") => {
+    const filename = `Industry_Report_${parameter.replace(/[^a-zA-Z0-9]/g, "_")}.${format === "excel" ? "xlsx" : format}`;
+    
+    let content = "";
+    if (format === "csv" || format === "excel") {
+      content = `Date,${parameter}\n` + sortedData.map(r => `"${r.date}",${r.value}`).join("\n");
+      const blob = new Blob([content], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", filename);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      alert(`Exporting ${format.toUpperCase()} report: ${filename}`);
+    }
   };
 
   return (
@@ -155,13 +214,13 @@ export default function IndustryReportFilters() {
         <div className="date-range-field">
           <span className="report-option-label">
             Date Range
-            <button type="button" onClick={() => setStartDate("2026-09-07T00:00")}>
+            <button type="button" onClick={() => setStartDate("2026-09-14T00:00")}>
               1D
             </button>
-            <button type="button" onClick={() => setStartDate("2026-09-06T00:00")}>
+            <button type="button" onClick={() => setStartDate("2026-09-07T00:00")}>
               7D
             </button>
-            <button type="button" onClick={() => setStartDate("2026-08-08T00:00")}>
+            <button type="button" onClick={() => setStartDate("2026-08-14T00:00")}>
               30D
             </button>
           </span>
@@ -210,14 +269,132 @@ export default function IndustryReportFilters() {
         </label>
       </div>
 
-      <button
-        type="button"
-        className="generate-report-button"
-        onClick={() => setGenerated(true)}
-      >
-        <BarChart3 size={17} />
-        {generated ? "Report Generated" : "Generate Report"}
-      </button>
+      {/* Action Row with Generate Report, PDF, CSV, Excel (Screenshot Match) */}
+      <div className="report-actions-row">
+        <button
+          type="button"
+          className="generate-report-button"
+          onClick={() => setGenerated(true)}
+          style={{ marginTop: 0 }}
+        >
+          <BarChart3 size={17} />
+          <span>Generate Report</span>
+        </button>
+
+        <button
+          type="button"
+          className="export-button"
+          onClick={() => handleExport("pdf")}
+        >
+          <FileText size={16} />
+          <span>PDF</span>
+        </button>
+
+        <button
+          type="button"
+          className="export-button"
+          onClick={() => handleExport("csv")}
+        >
+          <FileSpreadsheet size={16} />
+          <span>CSV</span>
+        </button>
+
+        <button
+          type="button"
+          className="export-button"
+          onClick={() => handleExport("excel")}
+        >
+          <FileSpreadsheet size={16} />
+          <span>Excel</span>
+        </button>
+      </div>
+
+      {/* Report View Tabs: Table vs Chart (Screenshot Match) */}
+      {generated && (
+        <>
+          <div className="report-view-tabs">
+            <button
+              type="button"
+              className={`report-tab-btn ${viewMode === "table" ? "active" : ""}`}
+              onClick={() => setViewMode("table")}
+            >
+              <TableIcon size={16} />
+              <span>Table</span>
+            </button>
+            <button
+              type="button"
+              className={`report-tab-btn ${viewMode === "chart" ? "active" : ""}`}
+              onClick={() => setViewMode("chart")}
+            >
+              <LineChartIcon size={16} />
+              <span>Chart</span>
+            </button>
+          </div>
+
+          {/* Report Output Content */}
+          <div className="report-output-container">
+            {viewMode === "table" ? (
+              <div className="report-table-wrapper">
+                <table className="report-table">
+                  <thead>
+                    <tr>
+                      <th onClick={() => setSortAsc((prev) => !prev)}>
+                        <div className="th-content">
+                          <span>Date</span>
+                          <ChevronsUpDown size={15} />
+                        </div>
+                      </th>
+                      <th onClick={() => setSortAsc((prev) => !prev)}>
+                        <div className="th-content">
+                          <span>{parameter}</span>
+                          <ChevronsUpDown size={15} />
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sortedData.map((row) => (
+                      <tr key={row.id}>
+                        <td>{row.date}</td>
+                        <td className="font-semibold">{row.value}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className="report-chart-container">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart
+                    data={sortedData}
+                    margin={{ top: 20, right: 30, left: 10, bottom: 20 }}
+                  >
+                    <defs>
+                      <linearGradient id="reportGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#209cc0" stopOpacity={0.35} />
+                        <stop offset="95%" stopColor="#209cc0" stopOpacity={0.0} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                    <XAxis dataKey="date" stroke="#64748b" fontSize={12} />
+                    <YAxis stroke="#64748b" fontSize={12} />
+                    <Tooltip />
+                    <Area
+                      type="monotone"
+                      dataKey="value"
+                      stroke="#209cc0"
+                      strokeWidth={3}
+                      fillOpacity={1}
+                      fill="url(#reportGradient)"
+                      dot={{ r: 4, fill: "#209cc0" }}
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            )}
+          </div>
+        </>
+      )}
     </section>
   );
 }
