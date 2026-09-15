@@ -20,6 +20,8 @@ export default function DashboardLayout({
   return (
     <html lang="en">
       <body>
+
+        
         <ThemeProvider>
           <div className="dashboard-layout">
             <Navbar />
