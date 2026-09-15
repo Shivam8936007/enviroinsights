@@ -1,12 +1,23 @@
 "use client";
 
-import { HelpCircle } from "lucide-react";
-import { usePathname } from "next/navigation";
+import Image from "next/image";
+import { HelpCircle, LogOut } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 import "../app/navbar.css";
 import ThemeControls from "./ThemeControls";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    setProfileMenuOpen(false);
+    window.localStorage.removeItem("enviro-auth");
+    window.sessionStorage.clear();
+    router.push("/");
+  };
 
   if (pathname === "/") {
     return null;
@@ -17,14 +28,14 @@ export default function Navbar() {
 
       {/* Logo */}
       <div className="navbar-logo">
-        <div className="logo-symbol">
-          💧
-        </div>
-
-        <div className="logo-text">
-          <span>Enviro</span>
-          <span>Insights</span>
-        </div>
+        <Image
+          className="navbar-logo-image"
+          src="/Enviro.png"
+          alt="Enviro Alignment LLP"
+          width={180}
+          height={54}
+          priority
+        />
       </div>
 
       {/* Right side */}
@@ -40,11 +51,33 @@ export default function Navbar() {
         <div className="navbar-divider" />
 
         <div className="company-name">
-          Advance Enviro Solution
-        </div>
+     Enviro Alignment LLP       
+     </div>
 
-        <div className="user-avatar">
-          A
+        <div className="profile-menu">
+          <button
+            type="button"
+            className="user-avatar"
+            onClick={() => setProfileMenuOpen((open) => !open)}
+            aria-label="Open profile menu"
+            aria-expanded={profileMenuOpen}
+            title="Open profile menu"
+          >
+            A
+          </button>
+
+          {profileMenuOpen && (
+            <div className="profile-dropdown">
+              <button
+                type="button"
+                className="logout-button"
+                onClick={handleLogout}
+              >
+                <LogOut size={18} />
+                <span>Logout</span>
+              </button>
+            </div>
+          )}
         </div>
 
       </div>

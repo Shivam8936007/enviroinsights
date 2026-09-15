@@ -19,6 +19,8 @@
 
 .company-header {
   margin-bottom: 16px;
+  position: relative;
+  z-index: 100;
 
   background: rgba(255,255,255,0.92);
 
@@ -27,7 +29,7 @@
   box-shadow:
     0 3px 12px rgba(30,90,130,0.05);
 
-  overflow: hidden;
+  overflow: visible;
 }
 
 .company-header-top {
@@ -67,6 +69,10 @@
   font-size: 14px;
 }
 
+.company-select.open {
+  z-index: 1100;
+}
+
 .company-select-trigger {
   width: 100%;
   height: 100%;
@@ -104,7 +110,7 @@
   max-height: 190px;
   padding: 5px;
   position: absolute;
-  z-index: 20;
+  z-index: 1200;
   top: calc(100% + 4px);
   left: 0;
   overflow-y: auto;

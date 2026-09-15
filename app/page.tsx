@@ -1,7 +1,8 @@
 "use client";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import "./login.css";
+import "./login.css"
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,14 +33,14 @@ export default function LoginPage() {
       {/* Header */}
       <header className="login-header">
         <div className="brand">
-          <div className="brand-logo">
-            <span>◆</span>
-          </div>
-
-          <div>
-            <h2>Enviro</h2>
-            <h2>Insights</h2>
-          </div>
+          <Image
+            className="brand-image"
+            src="/Enviro.png"
+            alt="Enviro Alignment LLP"
+            width={180}
+            height={120}
+            priority
+          />
         </div>
 
         <div className="header-right">
@@ -98,7 +99,7 @@ export default function LoginPage() {
 
           <div className="login-title">
             <h2>Welcome Back</h2>
-            <p>Sign in to continue to Enviro Insights</p>
+            <p>Sign in to continue to Enviro Alignment LLP</p>
           </div>
 
           <form onSubmit={handleSubmit}>
@@ -251,7 +252,7 @@ export default function LoginPage() {
       {/* Footer */}
       <footer className="login-footer">
         <span>
-          © 2026 Enviro Insights. All rights reserved.
+          © 2026 Enviro Alignment LLP. All rights reserved.
         </span>
 
         <span>

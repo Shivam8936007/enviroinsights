@@ -8,7 +8,7 @@ export default function SiteStatusPage() {
       {/* Footer */}
       <footer className="dashboard-footer">
         <span>
-          © 2026 Enviro Insights. All rights reserved.
+          © 2026 Enviro Alignment LLP. All rights reserved.
         </span>
 
         <span>
