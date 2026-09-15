@@ -1,12 +1,16 @@
 import CompanyHeader from "@/components/CompanyHeader";
-import IndustryReportFilters from "@/components/IndustryReportFilters";
+import RealTimeOverview from "@/components/RealTimeOverview";
+import "../dashboard.css";
+import "../realtime.css";
 
-export default function IndustryReportsPage() {
+export default function RealTimePage() {
   return (
-    <div className="dashboard-page industry-reports-page">
+    <div className="realtime-container">
       <CompanyHeader />
-      <IndustryReportFilters />
 
+      <RealTimeOverview />
+
+      {/* Footer */}
       <footer className="dashboard-footer">
         <span>© 2026 Enviro Alignment LLP. All rights reserved.</span>
         <span>A Cleaner Tomorrow 🌱</span>

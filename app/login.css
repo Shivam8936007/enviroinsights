@@ -78,7 +78,7 @@
 .login-header {
   height: 75px;
 
-  padding: 0 6%;
+  padding: 0 2%;
 
   display: flex;
   align-items: center;
@@ -98,6 +98,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.brand-image {
+  width: 180px;
+  height: 72px;
+  object-fit: contain;
 }
 
 .brand-logo {
